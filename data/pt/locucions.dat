@@ -348,4 +348,9 @@ uns_vez_que um_vez_que CS
 very_typical very_typical NCMS000
 visto_que visto_que CS
 wild_cards wild_card NCMP000
+<serviço>_<público> serviço_público $1:NC
+<servidor>_<público> servidor_público $1:NC
+<salário>_<mínimo> salário_mínimo $1:NC
+<processo>_<judicial> processo_judicial $1:NC
+<juizado>_<especial> juizado_especial $1:NC
 </Multiwords>
