@@ -860,10 +860,13 @@ rzinho	r	^NCMS	NCMS00D	1	0	0	L 0	-
 
 # cuzinho #
 
+ezinhas *	^NC	NCFP00D	1	0	0	L 0	-
+ezinha  *	^NC	NCFS00D	1	0	0	L 0	-
 zinhas	*	^NC	NCFP00D	1	0	0	L 0	-
 zinha	*	^NC	NCFS00D	1	0	0	L 0	-
 zinhos	*	^NC	NCMP00D	1	0	0	L 0	-
 zinho	*	^NC	NCMS00D	1	0	0	L 0	-
+zinho	*	^AQ0CS	AQDCS0	1	0	0	L 0	-
 
 # bordelinho #
 
