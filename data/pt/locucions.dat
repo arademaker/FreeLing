@@ -1,6 +1,7 @@
 <TagSetFile>
 ./tagset.dat
 </TagSetFile>
+
 <Multiwords>
 abaixo_de abaixo_de SP
 à_beira_de à_beira_de SP
@@ -352,4 +353,5 @@ wild_cards wild_card NCMP000
 <salário>_<mínimo> salário_mínimo $1:NC
 <processo>_<judicial> processo_judicial $1:NC
 <juizado>_<especial> juizado_especial $1:NC
+habeas_corpus habeas_corpus NCMS000
 </Multiwords>
