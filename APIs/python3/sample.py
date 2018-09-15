@@ -1,7 +1,5 @@
 #! /usr/bin/python3
 
-### REQUIRES python 3 !!!!
-
 ## Run:  ./sample.py
 ## Reads from stdin and writes to stdout
 ## For example:
@@ -97,14 +95,14 @@ if not os.path.exists(os.environ["FREELINGDIR"]+"/share/freeling") :
 DATA = os.environ["FREELINGDIR"]+"/share/freeling/";
 
 # Init locales
-pyfreeling.util_init_locale("default");
+pyfreeling.util_init_locale("en_US.UTF-8");
 
 # create language detector. Used just to show it. Results are printed
 # but ignored (after, it is assumed language is LANG)
 la=pyfreeling.lang_ident(DATA+"common/lang_ident/ident-few.dat");
 
 # create options set for maco analyzer. Default values are Ok, except for data files.
-LANG="es";
+LANG="pt";
 op= pyfreeling.maco_options(LANG);
 op.set_data_files( "", 
                    DATA + "common/punct.dat",
@@ -113,7 +111,7 @@ op.set_data_files( "",
                    "",
                    DATA + LANG + "/locucions.dat", 
                    DATA + LANG + "/np.dat",
-                   DATA + LANG + "/quantities.dat",
+                   DATA + "common/quantities_default.dat",
                    DATA + LANG + "/probabilitats.dat");
 
 # create analyzers
@@ -128,15 +126,16 @@ mf.set_active_options(False, True, True, True,  # select which among created
                       True, True, True, True ); # default: all created submodules are used
 
 # create tagger, sense anotator, and parsers
-tg=pyfreeling.hmm_tagger(DATA+LANG+"/tagger.dat",True,2);
-sen=pyfreeling.senses(DATA+LANG+"/senses.dat");
-parser= pyfreeling.chart_parser(DATA+LANG+"/chunker/grammar-chunk.dat");
-dep=pyfreeling.dep_txala(DATA+LANG+"/dep_txala/dependences.dat", parser.get_start_symbol());
+tg = pyfreeling.hmm_tagger(DATA+LANG+"/tagger.dat",True,2);
+sen = pyfreeling.senses(DATA+LANG+"/senses.dat");
+ukb = pyfreeling.ukb(DATA+LANG+"/ukb.dat");
+#parser= pyfreeling.chart_parser(DATA+LANG+"/chunker/grammar-chunk.dat");
+#dep=pyfreeling.dep_txala(DATA+LANG+"/dep_txala/dependences.dat", parser.get_start_symbol());
 
 # process input text
 lin=sys.stdin.readline();
 
-print ("Text language is: "+la.identify_language(lin)+"\n");
+# print ("Text language is: "+la.identify_language(lin)+"\n");
 
 while (lin) :
         
@@ -146,8 +145,8 @@ while (lin) :
     ls = mf.analyze(ls);
     ls = tg.analyze(ls);
     ls = sen.analyze(ls);
-    ls = parser.analyze(ls);
-    ls = dep.analyze(ls);
+    #ls = parser.analyze(ls);
+    #ls = dep.analyze(ls);
 
     ## output results
     for s in ls :
@@ -156,11 +155,11 @@ while (lin) :
           print(w.get_form()+" "+w.get_lemma()+" "+w.get_tag()+" "+w.get_senses_string());
        print ("");
 
-       tr = s.get_parse_tree();
-       printTree(tr, 0);
+       #tr = s.get_parse_tree();
+       #printTree(tr, 0);
 
-       dp = s.get_dep_tree();
-       printDepTree(dp, 0)
+       #dp = s.get_dep_tree();
+       #printDepTree(dp, 0)
 
     lin=sys.stdin.readline();
     
